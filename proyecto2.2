@@ -1,0 +1,401 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyM4U8Qm/zC6Xlc6OB2KTCjk",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/gustaavoq94/proyecto2/blob/main/proyecto2.2\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 1,
+      "metadata": {
+        "id": "s2ZvDtiqBVKI"
+      },
+      "outputs": [],
+      "source": [
+        "import pandas as pd"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "filename = '/content/day.csv'\n",
+        "df = pd.read_csv(filename)\n",
+        "df.head()"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 206
+        },
+        "id": "8VWh-rgeCgzP",
+        "outputId": "41c2cc14-612f-4549-c4f0-2dac3ccd3308"
+      },
+      "execution_count": 4,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "   instant      dteday  season  yr  mnth  holiday  weekday  workingday  \\\n",
+              "0        1  2011-01-01       1   0     1        0        6           0   \n",
+              "1        2  2011-01-02       1   0     1        0        0           0   \n",
+              "2        3  2011-01-03       1   0     1        0        1           1   \n",
+              "3        4  2011-01-04       1   0     1        0        2           1   \n",
+              "4        5  2011-01-05       1   0     1        0        3           1   \n",
+              "\n",
+              "   weathersit      temp     atemp       hum  windspeed  casual  registered  \\\n",
+              "0           2  0.344167  0.363625  0.805833   0.160446     331         654   \n",
+              "1           2  0.363478  0.353739  0.696087   0.248539     131         670   \n",
+              "2           1  0.196364  0.189405  0.437273   0.248309     120        1229   \n",
+              "3           1  0.200000  0.212122  0.590435   0.160296     108        1454   \n",
+              "4           1  0.226957  0.229270  0.436957   0.186900      82        1518   \n",
+              "\n",
+              "    cnt  \n",
+              "0   985  \n",
+              "1   801  \n",
+              "2  1349  \n",
+              "3  1562  \n",
+              "4  1600  "
+            ],
+            "text/html": [
+              "\n",
+              "  <div id=\"df-111c789f-8769-4685-96be-d97df6669bd2\">\n",
+              "    <div class=\"colab-df-container\">\n",
+              "      <div>\n",
+              "<style scoped>\n",
+              "    .dataframe tbody tr th:only-of-type {\n",
+              "        vertical-align: middle;\n",
+              "    }\n",
+              "\n",
+              "    .dataframe tbody tr th {\n",
+              "        vertical-align: top;\n",
+              "    }\n",
+              "\n",
+              "    .dataframe thead th {\n",
+              "        text-align: right;\n",
+              "    }\n",
+              "</style>\n",
+              "<table border=\"1\" class=\"dataframe\">\n",
+              "  <thead>\n",
+              "    <tr style=\"text-align: right;\">\n",
+              "      <th></th>\n",
+              "      <th>instant</th>\n",
+              "      <th>dteday</th>\n",
+              "      <th>season</th>\n",
+              "      <th>yr</th>\n",
+              "      <th>mnth</th>\n",
+              "      <th>holiday</th>\n",
+              "      <th>weekday</th>\n",
+              "      <th>workingday</th>\n",
+              "      <th>weathersit</th>\n",
+              "      <th>temp</th>\n",
+              "      <th>atemp</th>\n",
+              "      <th>hum</th>\n",
+              "      <th>windspeed</th>\n",
+              "      <th>casual</th>\n",
+              "      <th>registered</th>\n",
+              "      <th>cnt</th>\n",
+              "    </tr>\n",
+              "  </thead>\n",
+              "  <tbody>\n",
+              "    <tr>\n",
+              "      <th>0</th>\n",
+              "      <td>1</td>\n",
+              "      <td>2011-01-01</td>\n",
+              "      <td>1</td>\n",
+              "      <td>0</td>\n",
+              "      <td>1</td>\n",
+              "      <td>0</td>\n",
+              "      <td>6</td>\n",
+              "      <td>0</td>\n",
+              "      <td>2</td>\n",
+              "      <td>0.344167</td>\n",
+              "      <td>0.363625</td>\n",
+              "      <td>0.805833</td>\n",
+              "      <td>0.160446</td>\n",
+              "      <td>331</td>\n",
+              "      <td>654</td>\n",
+              "      <td>985</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>1</th>\n",
+              "      <td>2</td>\n",
+              "      <td>2011-01-02</td>\n",
+              "      <td>1</td>\n",
+              "      <td>0</td>\n",
+              "      <td>1</td>\n",
+              "      <td>0</td>\n",
+              "      <td>0</td>\n",
+              "      <td>0</td>\n",
+              "      <td>2</td>\n",
+              "      <td>0.363478</td>\n",
+              "      <td>0.353739</td>\n",
+              "      <td>0.696087</td>\n",
+              "      <td>0.248539</td>\n",
+              "      <td>131</td>\n",
+              "      <td>670</td>\n",
+              "      <td>801</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>2</th>\n",
+              "      <td>3</td>\n",
+              "      <td>2011-01-03</td>\n",
+              "      <td>1</td>\n",
+              "      <td>0</td>\n",
+              "      <td>1</td>\n",
+              "      <td>0</td>\n",
+              "      <td>1</td>\n",
+              "      <td>1</td>\n",
+              "      <td>1</td>\n",
+              "      <td>0.196364</td>\n",
+              "      <td>0.189405</td>\n",
+              "      <td>0.437273</td>\n",
+              "      <td>0.248309</td>\n",
+              "      <td>120</td>\n",
+              "      <td>1229</td>\n",
+              "      <td>1349</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>3</th>\n",
+              "      <td>4</td>\n",
+              "      <td>2011-01-04</td>\n",
+              "      <td>1</td>\n",
+              "      <td>0</td>\n",
+              "      <td>1</td>\n",
+              "      <td>0</td>\n",
+              "      <td>2</td>\n",
+              "      <td>1</td>\n",
+              "      <td>1</td>\n",
+              "      <td>0.200000</td>\n",
+              "      <td>0.212122</td>\n",
+              "      <td>0.590435</td>\n",
+              "      <td>0.160296</td>\n",
+              "      <td>108</td>\n",
+              "      <td>1454</td>\n",
+              "      <td>1562</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>4</th>\n",
+              "      <td>5</td>\n",
+              "      <td>2011-01-05</td>\n",
+              "      <td>1</td>\n",
+              "      <td>0</td>\n",
+              "      <td>1</td>\n",
+              "      <td>0</td>\n",
+              "      <td>3</td>\n",
+              "      <td>1</td>\n",
+              "      <td>1</td>\n",
+              "      <td>0.226957</td>\n",
+              "      <td>0.229270</td>\n",
+              "      <td>0.436957</td>\n",
+              "      <td>0.186900</td>\n",
+              "      <td>82</td>\n",
+              "      <td>1518</td>\n",
+              "      <td>1600</td>\n",
+              "    </tr>\n",
+              "  </tbody>\n",
+              "</table>\n",
+              "</div>\n",
+              "      <button class=\"colab-df-convert\" onclick=\"convertToInteractive('df-111c789f-8769-4685-96be-d97df6669bd2')\"\n",
+              "              title=\"Convert this dataframe to an interactive table.\"\n",
+              "              style=\"display:none;\">\n",
+              "        \n",
+              "  <svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24px\"viewBox=\"0 0 24 24\"\n",
+              "       width=\"24px\">\n",
+              "    <path d=\"M0 0h24v24H0V0z\" fill=\"none\"/>\n",
+              "    <path d=\"M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z\"/><path d=\"M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z\"/>\n",
+              "  </svg>\n",
+              "      </button>\n",
+              "      \n",
+              "  <style>\n",
+              "    .colab-df-container {\n",
+              "      display:flex;\n",
+              "      flex-wrap:wrap;\n",
+              "      gap: 12px;\n",
+              "    }\n",
+              "\n",
+              "    .colab-df-convert {\n",
+              "      background-color: #E8F0FE;\n",
+              "      border: none;\n",
+              "      border-radius: 50%;\n",
+              "      cursor: pointer;\n",
+              "      display: none;\n",
+              "      fill: #1967D2;\n",
+              "      height: 32px;\n",
+              "      padding: 0 0 0 0;\n",
+              "      width: 32px;\n",
+              "    }\n",
+              "\n",
+              "    .colab-df-convert:hover {\n",
+              "      background-color: #E2EBFA;\n",
+              "      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);\n",
+              "      fill: #174EA6;\n",
+              "    }\n",
+              "\n",
+              "    [theme=dark] .colab-df-convert {\n",
+              "      background-color: #3B4455;\n",
+              "      fill: #D2E3FC;\n",
+              "    }\n",
+              "\n",
+              "    [theme=dark] .colab-df-convert:hover {\n",
+              "      background-color: #434B5C;\n",
+              "      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);\n",
+              "      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));\n",
+              "      fill: #FFFFFF;\n",
+              "    }\n",
+              "  </style>\n",
+              "\n",
+              "      <script>\n",
+              "        const buttonEl =\n",
+              "          document.querySelector('#df-111c789f-8769-4685-96be-d97df6669bd2 button.colab-df-convert');\n",
+              "        buttonEl.style.display =\n",
+              "          google.colab.kernel.accessAllowed ? 'block' : 'none';\n",
+              "\n",
+              "        async function convertToInteractive(key) {\n",
+              "          const element = document.querySelector('#df-111c789f-8769-4685-96be-d97df6669bd2');\n",
+              "          const dataTable =\n",
+              "            await google.colab.kernel.invokeFunction('convertToInteractive',\n",
+              "                                                     [key], {});\n",
+              "          if (!dataTable) return;\n",
+              "\n",
+              "          const docLinkHtml = 'Like what you see? Visit the ' +\n",
+              "            '<a target=\"_blank\" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'\n",
+              "            + ' to learn more about interactive tables.';\n",
+              "          element.innerHTML = '';\n",
+              "          dataTable['output_type'] = 'display_data';\n",
+              "          await google.colab.output.renderOutput(dataTable, element);\n",
+              "          const docLink = document.createElement('div');\n",
+              "          docLink.innerHTML = docLinkHtml;\n",
+              "          element.appendChild(docLink);\n",
+              "        }\n",
+              "      </script>\n",
+              "    </div>\n",
+              "  </div>\n",
+              "  "
+            ]
+          },
+          "metadata": {},
+          "execution_count": 4
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "#**Fuente de datos**\n",
+        "https://www.kaggle.com/datasets/ayessa/bike-sharing-dataset-regression"
+      ],
+      "metadata": {
+        "id": "Ww-uZsIoC9HN"
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "#**Breve descripción de datos**\n",
+        "El conjunto de datos \"Bike Rent\" contiene información sobre el alquiler de bicicletas, incluyendo detalles sobre la fecha y hora del alquiler, el clima, la temperatura y la cantidad de alquileres realizados. Cada fila representa un registro de alquiler, y las columnas incluyen información como el momento en que se registró el alquiler (instant), la fecha y hora (dteday), el período de tiempo (season), el año (yr), el mes (mnth), si el día es un feriado (holiday), el día de la semana (weekday), si es un día laborable o no (workingday), la condición meteorológica (weathersit), la temperatura (temp), la sensación térmica (atemp), la humedad (hum), la velocidad del viento (windspeed) y la cantidad total de alquileres (cnt), que se divide en la cantidad de alquileres de usuarios registrados (registered) y la cantidad de alquileres de usuarios casuales (casual)."
+      ],
+      "metadata": {
+        "id": "gsv6YQUKDCSE"
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "#**Cual es el objetivo?**\n",
+        "\"cnt\" sería una buena opción para usar como objetivo ya que representa la cantidad total de alquileres de bicicletas realizados en un día, y es una variable numérica continua que puede ser utilizada para construir modelos de regresión."
+      ],
+      "metadata": {
+        "id": "18miS_bZDfBM"
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "#**¿Este es un problema de clasificación o regresión?**\n",
+        "Regresion"
+      ],
+      "metadata": {
+        "id": "zF8Vqb6iEUtL"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "df.shape"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "y_mtMWchEaF8",
+        "outputId": "f5536660-20b3-477f-930a-dc85a48df612"
+      },
+      "execution_count": 5,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "(731, 16)"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 5
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "#**¿Cuántas características hay?**\n",
+        "16\n",
+        "#**¿Cuántas filas de datos hay?**\n",
+        "731"
+      ],
+      "metadata": {
+        "id": "MjQuCd-BEfgM"
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "#**¿Qué retos, si es que hay alguno, prevén en la limpieza, exploración o modelización con este conjunto de datos?**\n",
+        "El conjunto de datos \"Bike Rent\" es relativamente limpio y bien estructurado, lo que hace que la tarea de limpieza y exploración sea relativamente sencilla. Sin embargo, aún existen algunos retos que podrían presentarse durante estas etapas\n",
+        "\n",
+        "*Valores faltantes*: aunque el conjunto de datos no parece tener muchos valores faltantes, es posible que algunas columnas tengan valores faltantes que deban ser tratados. Dependiendo del número de valores faltantes y de la columna afectada, es posible que se deba tomar una decisión sobre cómo manejar estos valores faltantes (eliminar las filas con valores faltantes, imputar valores, etc.).\n",
+        "\n",
+        "*Datos atípicos*: es posible que el conjunto de datos tenga valores atípicos o extremos que deban ser identificados y tratados. Estos valores pueden tener un impacto significativo en los resultados del modelo, por lo que es importante prestar atención a ellos durante la exploración y limpieza de los datos.\n",
+        "\n",
+        "*Correlación entre variables*: algunas de las variables del conjunto de datos pueden estar altamente correlacionadas, lo que puede tener un impacto en el rendimiento del modelo. Por ejemplo, la variable \"temp\" y la variable \"atemp\" pueden estar altamente correlacionadas ya que ambas miden la temperatura, pero de diferentes maneras. Es importante identificar estas correlaciones y tomar medidas para manejarlas, si es necesario.\n",
+        "\n",
+        "*Selección de características*: cuando se construye un modelo de machine learning, es importante seleccionar las características adecuadas para el modelo. En el caso del conjunto de datos \"Bike Rent\", es posible que algunas características no sean relevantes para el modelo y deban ser eliminadas. Por ejemplo, la columna \"instant\" no parece ser relevante para el modelo ya que simplemente identifica el registro de alquiler y no tiene ninguna relación con la cantidad de alquileres de bicicletas."
+      ],
+      "metadata": {
+        "id": "6XEpjydxEm1u"
+      }
+    }
+  ]
+}
